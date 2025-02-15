@@ -3854,10 +3854,28 @@ font-size: 16px;
 
             <div id="loadingSpinner" class="loading-spinner d-none">
               <div class="container">
-                <div class="loader"></div>
-                <p>Cargando...</p>
+
+              <button class="fcc_btn_shimer"></button>
+              <button class="fcc_btn_shimer"></button>
               </div>
+              <div class="container002">
+              <label class="fcc_label_shimmer" for=""></label>
+              <input class="fcc_input_shimmer" type="text">
+              <label class="fcc_label_shimmer" for=""></label>
+              <input class="fcc_input_shimmer" type="text">
+              <label class="fcc_label_shimmer" for=""></label>
+              <input class="fcc_input_shimmer"type="text">
+              <label class="fcc_label_shimmer" for=""></label>
+              <input class="fcc_input_shimmer" type="text">
+              <!-- <label  class="fcc_label_shimmer" for=""></label>
+              <input class="fcc_input_shimmer" type="text">
+              <label class="fcc_label_shimmer" for=""></label>
+              <input class="fcc_input_shimmer" type="text"> -->
+              </div>
+
+
             </div>
+
 
 
 

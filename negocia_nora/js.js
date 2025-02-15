@@ -85,7 +85,7 @@
 
  // Función que se ejecuta al abrir el modal
       function openModal() {
-        // Ocultar el fcc_CA_formulario al abrir el modal
+        
         document.getElementById('formContainer').style.display = 'none';
         document.querySelector('.modal-body').classList.remove('scrollable');
 
@@ -96,7 +96,7 @@
         document.getElementById('fcclientes_empresaFields').style.display = 'none';
       }
 
-      function showForm(type) {
+      function showForm(clienteTipo) {
         // Muestra el fcc_CA_formulario correspondiente
         document.getElementById('formContainer').style.display = 'block';
 
@@ -104,7 +104,16 @@
         document.querySelector('.modal-body').classList.add('scrollable');
 
         // Oculta los campos de persona o empresa según el tipo
-        if (type === 'persona') {
+        if (clienteTipo === '1') {
+
+          const boton = document.getElementById('fcc_btn_persona');
+
+    // Cambiar el color de fondo a naranja
+    boton.style.background = 'orange';
+
+    // Cambiar el color del texto a blanco
+    boton.style.color = 'white';
+          
           document.getElementById('fcclientes_personaFields').style.display = 'block';
           document.getElementById('fcclientes_empresaFields').style.display = 'none';
 
@@ -113,7 +122,14 @@
 
           // Actualiza las opciones del select
           updateDocumentTypeOptions('persona');
-        } else if (type === 'empresa') {
+        } else if (clienteTipo === '6') {
+          const boton = document.getElementById('fcc_btn_empresa');
+
+    // Cambiar el color de fondo a naranja
+    boton.style.background = 'orange';
+
+    // Cambiar el color del texto a blanco
+    boton.style.color = 'white';
           document.getElementById('fcclientes_empresaFields').style.display = 'block';
           document.getElementById('fcclientes_personaFields').style.display = 'none';
 
@@ -121,7 +137,7 @@
           document.getElementById('fcclientes_tipo_doc').value = "6"; // Asumiendo que "6" es el valor para RUC
 
           // Actualiza las opciones del select
-          updateDocumentTypeOptions('empresa');
+          updateDocumentTypeOptions(clienteTipo === '6' ? 'empresa' : 'persona');
         }
       }
 
@@ -177,7 +193,7 @@ function fcclientes_btn_mas_opciones(){
 
 
 // function de los acordiones 
-                     function fcc_acordiones() {
+function fcc_acordiones() {
                       // Selecciona todos los fcc_CA_botones de toggle dentro del acordeón
                       const toggleButtons = document.querySelectorAll(".fccliente-desplegable-header");
 
@@ -395,22 +411,30 @@ function fcclientes_btn_mas_opciones(){
                       };
                   
                       fetch("./crud_data_cliente.php", requestOptions)
-                          .then((response) => response.text())  // Convertir la respuesta a texto (HTML)
-                          .then((html) => {
-                              //console.log(html);  // Mostrar el HTML en la consola
+                      .then((response) => response.text())  // Convertir la respuesta a texto (HTML)
+                      .then((html) => {
+                          // Ocultar el spinner de carga
+                          document.getElementById('loadingSpinner').classList.add('d-none');
                   
-                              // Ocultar el spinner de carga
-                              document.getElementById('loadingSpinner').classList.add('d-none');
+                          // Mostrar el formulario y llenarlo con el HTML obtenido
+                          const formularioDiv = document.getElementById('fcclientes-formulario');
+                          formularioDiv.innerHTML = html;  // Insertar el HTML en el div
+                          formularioDiv.classList.remove('d-none');  // Mostrar el div
                   
-                              // Mostrar el formulario y llenarlo con el HTML obtenido
-                              const formularioDiv = document.getElementById('fcclientes-formulario');
-                              formularioDiv.innerHTML = html;  // Insertar el HTML en el div
-                              formularioDiv.classList.remove('d-none');  // Mostrar el div
-                          })
-                          .catch((error) => {
-                              console.error(error);  // Manejar errores
-                              document.getElementById('loadingSpinner').classList.add('d-none');  // Ocultar el spinner en caso de error
-                          });
+                          // Extraer y ejecutar el código JavaScript del HTML
+                          const scripts = formularioDiv.getElementsByTagName('script');
+                          for (let i = 0; i < scripts.length; i++) {
+                              const scriptContent = scripts[i].innerHTML;
+                              if (scriptContent) {
+                                  // Ejecutar el código JavaScript usando eval (ten cuidado con eval por razones de seguridad)
+                                  eval(scriptContent);
+                              }
+                          }
+                      })
+                      .catch((error) => {
+                          console.error(error);  // Manejar errores
+                          document.getElementById('loadingSpinner').classList.add('d-none');  // Ocultar el spinner en caso de error
+                      });
                   }
 
                     

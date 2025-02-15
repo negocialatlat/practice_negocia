@@ -514,38 +514,73 @@
       }
 
 
-
+      
+      
       .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        /* Ajusta la altura según sea necesario */
+        margin-bottom: 30px; 
+        display: flex; /* Activa Flexbox */
+        justify-content: center; /* Centra los elementos horizontalmente */
+        gap: 50px; /* Espacio entre los botones (opcional) */
       }
+      .fcc_btn_shimer {
+        animation: fade 1.5s ease-in-out infinite;
+        width: 120px;
+        padding: 20px 20px;
+        box-shadow: 0 4px 8px #ccc;
+        background-color: #ccc;
+        border: none;
+        cursor: pointer;
+    }
 
-      .loader {
-        border: 8px solid #f3f3f3;
-        /* Color del borde */
-        border-top: 8px solid #3498db;
-        /* Color del borde superior */
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        animation: spin 1s linear infinite;
-        /* Animación */
-      }
+    .container002{
+      
+      margin-top: 40px; 
+      display: flex;
+    flex-direction: column;
+    gap: 20px;
 
-      @keyframes spin {
+      width: 100%;
+    }
+    .fcc_input_shimmer .fcc_label_shimmer{
+      margin-bottom: 5px;
+
+    }
+    .fcc_input_shimmer {
+      box-shadow: 0 4px 8px #ccc;
+      background-color: #ccc;
+      border: none;
+      cursor: pointer;
+      animation: fade 1.5s ease-in-out infinite;
+      margin-left: 20px; /* Margen a la izquierda */
+      margin-right: 20px; /* Margen a la derecha */
+      padding: 10px; /* Espacio interno (opcional) */
+      width: calc(100% - 40px); /* Ajusta el ancho para compensar los márgenes */
+  }
+  .fcc_label_shimmer{
+    margin-bottom: 3px;
+    box-shadow: 0 4px 8px #ccc;
+      background-color: #ccc;
+      border: none;
+      cursor: pointer;
+      animation: fade 1.5s ease-in-out infinite;
+      margin-left: 20px; /* Margen a la izquierda */
+      margin-right: 20px; /* Margen a la derecha */
+      padding: 10px; /* Espacio interno (opcional) */
+      width: calc(30% - 20px); /* Ajusta el ancho para compensar los márgenes */
+
+  }
+    
+    @keyframes fade {
         0% {
-          transform: rotate(0deg);
+            opacity: 1; /* Visible */
         }
-
+        50% {
+            opacity: 0.5; /* Semi-transparente */
+        }
         100% {
-          transform: rotate(360deg);
+            opacity: 1; /* Visible nuevamente */
         }
-      }
-
+    }
      
 
       /* */

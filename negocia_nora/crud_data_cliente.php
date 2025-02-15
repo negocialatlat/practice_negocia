@@ -29,6 +29,12 @@ if (!empty($json['operacionCliente']) && $json['operacionCliente'] == 1) {
   $ClienteIdTipoContacto = "";
   $ClienteNotas = "";
 
+
+
+
+
+  // Lógica para redirigir al botón correspondiente
+
   if (!empty($id_cliente)) {
 
     $id_empresa = 2;
@@ -128,11 +134,12 @@ if (!empty($json['operacionCliente']) && $json['operacionCliente'] == 1) {
 
       <div class="fcclientes-eempresa-persona">
         <div class="btn">
-          <button type="button" class="fcclientes-button-next-btn" onclick="showForm('persona')">
+          <button type="button" id="fcc_btn_persona" class="fcclientes-button-next-btn" onclick="showForm('1')">
             Persona</button>
         </div>
         <div class="btn">
-          <button type="button" class="fcclientes-button-next-btn" onclick="showForm('empresa')">Empresa</button>
+          <button type="button" id="fcc_btn_empresa" class="fcclientes-button-next-btn"
+            onclick="showForm('6')">Empresa</button>
         </div>
       </div>
 
@@ -144,17 +151,18 @@ if (!empty($json['operacionCliente']) && $json['operacionCliente'] == 1) {
 
 
           <div class="row" style="--bs-gutter-x: 10px;">
-          <div class="col-4">
-    <label for="fcclientes_tipo_doc">Tipo de Doc.</label>
-    <select name="fcclientes_tipo_doc" id="fcclientes_tipo_doc">
-        <option value="">Seleccione</option>
-        <option value="1" <?php echo ($ClienteTipoDoc == 1) ? 'selected="selected"' : ''; ?>>DNI</option>
-        <option value="6" <?php echo ($ClienteTipoDoc == 6) ? 'selected="selected"' : ''; ?>>Ruc</option>
-        <option value="4" <?php echo ($ClienteTipoDoc == 4) ? 'selected="selected"' : ''; ?>>Carnet De Extranjeria</option>
-        <option value="7" <?php echo ($ClienteTipoDoc == 7) ? 'selected="selected"' : ''; ?>>Pasaporte</option>
-        <option value="100" <?php echo ($ClienteTipoDoc == 100) ? 'selected="selected"' : ''; ?>>Ninguno</option>
-    </select>
-</div>
+            <div class="col-4">
+              <label for="fcclientes_tipo_doc">Tipo de Doc.</label>
+              <select name="fcclientes_tipo_doc" id="fcclientes_tipo_doc">
+                <option value="">Seleccione</option>
+                <option value="1" <?php echo ($ClienteTipoDoc == 1) ? 'selected="selected"' : ''; ?>>DNI</option>
+                <option value="6" <?php echo ($ClienteTipoDoc == 6) ? 'selected="selected"' : ''; ?>>Ruc</option>
+                <option value="4" <?php echo ($ClienteTipoDoc == 4) ? 'selected="selected"' : ''; ?>>Carnet De Extranjeria
+                </option>
+                <option value="7" <?php echo ($ClienteTipoDoc == 7) ? 'selected="selected"' : ''; ?>>Pasaporte</option>
+                <option value="100" <?php echo ($ClienteTipoDoc == 100) ? 'selected="selected"' : ''; ?>>Ninguno</option>
+              </select>
+            </div>
             <div class="col-4">
               <label for="fcclientes_dni_cliente_proveedor">N° Documento</label>
               <input type="text" id="fcclientes_dni_cliente_proveedor" name="fc_dni" value=" <?php echo $ClienteDni ?> ">
@@ -224,37 +232,54 @@ if (!empty($json['operacionCliente']) && $json['operacionCliente'] == 1) {
           <!-- Departamento, Provincia, Distrito -->
           <div class="col-12 fccdepartamentos">
 
-          <div style="flex: 1;">
-    <label>Departamento</label>
-    <select name="fccubigeo_departamento_1" id="fccubigeo_departamento_1" class="fccinput-sm">
-        <option value="0">Departamento</option> <!-- Eliminado el atributo "hidden" -->
-        <option value="01" <?php echo ($ClienteDepartamento == '01') ? 'selected="selected"' : ''; ?>>Amazonas</option>
-        <option value="02" <?php echo ($ClienteDepartamento == '02') ? 'selected="selected"' : ''; ?>>Áncash</option>
-        <option value="03" <?php echo ($ClienteDepartamento == '03') ? 'selected="selected"' : ''; ?>>Apurímac</option>
-        <option value="04" <?php echo ($ClienteDepartamento == '04') ? 'selected="selected"' : ''; ?>>Arequipa</option>
-        <option value="05" <?php echo ($ClienteDepartamento == '05') ? 'selected="selected"' : ''; ?>>Ayacucho</option>
-        <option value="06" <?php echo ($ClienteDepartamento == '06') ? 'selected="selected"' : ''; ?>>Cajamarca</option>
-        <option value="08" <?php echo ($ClienteDepartamento == '08') ? 'selected="selected"' : ''; ?>>Cusco</option>
-        <option value="09" <?php echo ($ClienteDepartamento == '09') ? 'selected="selected"' : ''; ?>>Huancavelica</option>
-        <option value="10" <?php echo ($ClienteDepartamento == '10') ? 'selected="selected"' : ''; ?>>Huánuco</option>
-        <option value="11" <?php echo ($ClienteDepartamento == '11') ? 'selected="selected"' : ''; ?>>Ica</option>
-        <option value="12" <?php echo ($ClienteDepartamento == '12') ? 'selected="selected"' : ''; ?>>Junín</option>
-        <option value="13" <?php echo ($ClienteDepartamento == '13') ? 'selected="selected"' : ''; ?>>La Libertad</option>
-        <option value="14" <?php echo ($ClienteDepartamento == '14') ? 'selected="selected"' : ''; ?>>Lambayeque</option>
-        <option value="15" <?php echo ($ClienteDepartamento == '15') ? 'selected="selected"' : ''; ?>>Lima</option>
-        <option value="16" <?php echo ($ClienteDepartamento == '16') ? 'selected="selected"' : ''; ?>>Loreto</option>
-        <option value="17" <?php echo ($ClienteDepartamento == '17') ? 'selected="selected"' : ''; ?>>Madre de Dios</option>
-        <option value="18" <?php echo ($ClienteDepartamento == '18') ? 'selected="selected"' : ''; ?>>Moquegua</option>
-        <option value="19" <?php echo ($ClienteDepartamento == '19') ? 'selected="selected"' : ''; ?>>Pasco</option>
-        <option value="20" <?php echo ($ClienteDepartamento == '20') ? 'selected="selected"' : ''; ?>>Piura</option>
-        <option value="07" <?php echo ($ClienteDepartamento == '07') ? 'selected="selected"' : ''; ?>>Prov. Const. del Callao</option>
-        <option value="21" <?php echo ($ClienteDepartamento == '21') ? 'selected="selected"' : ''; ?>>Puno</option>
-        <option value="22" <?php echo ($ClienteDepartamento == '22') ? 'selected="selected"' : ''; ?>>San Martín</option>
-        <option value="23" <?php echo ($ClienteDepartamento == '23') ? 'selected="selected"' : ''; ?>>Tacna</option>
-        <option value="24" <?php echo ($ClienteDepartamento == '24') ? 'selected="selected"' : ''; ?>>Tumbes</option>
-        <option value="25" <?php echo ($ClienteDepartamento == '25') ? 'selected="selected"' : ''; ?>>Ucayali</option>
-    </select>
-</div>
+            <div style="flex: 1;">
+              <label>Departamento</label>
+              <select name="fccubigeo_departamento_1" id="fccubigeo_departamento_1" class="fccinput-sm">
+                <option value="0">Departamento</option> <!-- Eliminado el atributo "hidden" -->
+                <option value="01" <?php echo ($ClienteDepartamento == '01') ? 'selected="selected"' : ''; ?>>Amazonas
+                </option>
+                <option value="02" <?php echo ($ClienteDepartamento == '02') ? 'selected="selected"' : ''; ?>>Áncash
+                </option>
+                <option value="03" <?php echo ($ClienteDepartamento == '03') ? 'selected="selected"' : ''; ?>>Apurímac
+                </option>
+                <option value="04" <?php echo ($ClienteDepartamento == '04') ? 'selected="selected"' : ''; ?>>Arequipa
+                </option>
+                <option value="05" <?php echo ($ClienteDepartamento == '05') ? 'selected="selected"' : ''; ?>>Ayacucho
+                </option>
+                <option value="06" <?php echo ($ClienteDepartamento == '06') ? 'selected="selected"' : ''; ?>>Cajamarca
+                </option>
+                <option value="08" <?php echo ($ClienteDepartamento == '08') ? 'selected="selected"' : ''; ?>>Cusco</option>
+                <option value="09" <?php echo ($ClienteDepartamento == '09') ? 'selected="selected"' : ''; ?>>Huancavelica
+                </option>
+                <option value="10" <?php echo ($ClienteDepartamento == '10') ? 'selected="selected"' : ''; ?>>Huánuco
+                </option>
+                <option value="11" <?php echo ($ClienteDepartamento == '11') ? 'selected="selected"' : ''; ?>>Ica</option>
+                <option value="12" <?php echo ($ClienteDepartamento == '12') ? 'selected="selected"' : ''; ?>>Junín</option>
+                <option value="13" <?php echo ($ClienteDepartamento == '13') ? 'selected="selected"' : ''; ?>>La Libertad
+                </option>
+                <option value="14" <?php echo ($ClienteDepartamento == '14') ? 'selected="selected"' : ''; ?>>Lambayeque
+                </option>
+                <option value="15" <?php echo ($ClienteDepartamento == '15') ? 'selected="selected"' : ''; ?>>Lima</option>
+                <option value="16" <?php echo ($ClienteDepartamento == '16') ? 'selected="selected"' : ''; ?>>Loreto
+                </option>
+                <option value="17" <?php echo ($ClienteDepartamento == '17') ? 'selected="selected"' : ''; ?>>Madre de Dios
+                </option>
+                <option value="18" <?php echo ($ClienteDepartamento == '18') ? 'selected="selected"' : ''; ?>>Moquegua
+                </option>
+                <option value="19" <?php echo ($ClienteDepartamento == '19') ? 'selected="selected"' : ''; ?>>Pasco</option>
+                <option value="20" <?php echo ($ClienteDepartamento == '20') ? 'selected="selected"' : ''; ?>>Piura</option>
+                <option value="07" <?php echo ($ClienteDepartamento == '07') ? 'selected="selected"' : ''; ?>>Prov. Const.
+                  del Callao</option>
+                <option value="21" <?php echo ($ClienteDepartamento == '21') ? 'selected="selected"' : ''; ?>>Puno</option>
+                <option value="22" <?php echo ($ClienteDepartamento == '22') ? 'selected="selected"' : ''; ?>>San Martín
+                </option>
+                <option value="23" <?php echo ($ClienteDepartamento == '23') ? 'selected="selected"' : ''; ?>>Tacna</option>
+                <option value="24" <?php echo ($ClienteDepartamento == '24') ? 'selected="selected"' : ''; ?>>Tumbes
+                </option>
+                <option value="25" <?php echo ($ClienteDepartamento == '25') ? 'selected="selected"' : ''; ?>>Ucayali
+                </option>
+              </select>
+            </div>
 
             <div style="flex: 1;">
               <label>Provincia</label>
@@ -338,16 +363,18 @@ if (!empty($json['operacionCliente']) && $json['operacionCliente'] == 1) {
                 class="checkmark-box"></span></label>
           </div>
           <div class="col-12 f">
-    <label>Tipo Contacto</label>
-    <select aria-label="Tipo Del contacto" id="fc_tipo" name="fc_tipo">
-        <option value="0">Seleccione</option>
-        <option value="1" <?php echo ($ClienteIdTipoContacto == 1) ? 'selected="selected"' : ''; ?>>Cliente</option>
-        <option value="2" <?php echo ($ClienteIdTipoContacto == 2) ? 'selected="selected"' : ''; ?>>Potencial Cliente</option>
-        <option value="3" <?php echo ($ClienteIdTipoContacto == 3) ? 'selected="selected"' : ''; ?>>Proveedor</option>
-        <option value="4" <?php echo ($ClienteIdTipoContacto == 4) ? 'selected="selected"' : ''; ?>>Potencial Proveedor</option>
-        <option value="5" <?php echo ($ClienteIdTipoContacto == 5) ? 'selected="selected"' : ''; ?>>Partner</option>
-    </select>
-</div>
+            <label>Tipo Contacto</label>
+            <select aria-label="Tipo Del contacto" id="fc_tipo" name="fc_tipo">
+              <option value="0">Seleccione</option>
+              <option value="1" <?php echo ($ClienteIdTipoContacto == 1) ? 'selected="selected"' : ''; ?>>Cliente</option>
+              <option value="2" <?php echo ($ClienteIdTipoContacto == 2) ? 'selected="selected"' : ''; ?>>Potencial Cliente
+              </option>
+              <option value="3" <?php echo ($ClienteIdTipoContacto == 3) ? 'selected="selected"' : ''; ?>>Proveedor</option>
+              <option value="4" <?php echo ($ClienteIdTipoContacto == 4) ? 'selected="selected"' : ''; ?>>Potencial
+                Proveedor</option>
+              <option value="5" <?php echo ($ClienteIdTipoContacto == 5) ? 'selected="selected"' : ''; ?>>Partner</option>
+            </select>
+          </div>
 
 
           <div class="col-12  " style=" padding-bottom: 0px;"><label>Notas</label>
@@ -455,7 +482,7 @@ if (!empty($json['operacionCliente']) && $json['operacionCliente'] == 1) {
 
         <div class="fccliente-desplegable-item">
           <div class="fccliente-desplegable-header">
-          <img src="iconos\Ícono Datos Distribución SVG.svg" alt="Icono">
+            <img src="iconos\Ícono Datos Distribución SVG.svg" alt="Icono">
 
             <div class="fcc-DD textos">
               <span>Datos Distribución</span>
@@ -504,7 +531,7 @@ if (!empty($json['operacionCliente']) && $json['operacionCliente'] == 1) {
 
         <div class="fccliente-desplegable-item">
           <div class="fccliente-desplegable-header">
-          <img src="iconos\Ícono campos adicionales SVG.svg" alt="Icono">
+            <img src="iconos\Ícono campos adicionales SVG.svg" alt="Icono">
 
             <div class="fcc-CA textos">
               <span>Campos Adicionales</span>
@@ -577,6 +604,28 @@ if (!empty($json['operacionCliente']) && $json['operacionCliente'] == 1) {
 
 
 
+  <script>
+    $(document).ready(function () {
+
+      <?php
+
+      if (!empty($id_cliente)) {
+        ?>
+        // Obtener el tipo de cliente desde PHP
+        var clienteTipo = "<?php echo $ClienteTipoDoc; ?>";
+
+        // Llamar a la función con el tipo de cliente
+        showForm(clienteTipo);
+        <?php
+      }
+      ?>
+
+
+    });
+
+
+  </script>
+
 
 
 
@@ -588,5 +637,3 @@ if (!empty($json['operacionCliente']) && $json['operacionCliente'] == 1) {
 
 
 
-
-?>
